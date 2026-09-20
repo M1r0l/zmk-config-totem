@@ -23,31 +23,31 @@
 #define TVP1 4
 #define TVP2 5
 
-&mt {
+&mt {                   // &mt - mod and tap; hold -> modifier, tap -> normal key
   quick-tap-ms = <100>;
   global-quick-tap;
   flavor = "tap-preferred";
-  tapping-term-ms = <170>;
+  tapping-term-ms = <170>;              // zmk waits 170ms to determine whether it's a tap or a hold
 };
 
 / {
      combos {
             compatible = "zmk,combos";
             combo_esc {
-                timeout-ms = <50>;
+                timeout-ms = <50>;              // time window to press the combo keys
                 key-positions = <0 1>;
                 bindings = <&kp ESC>;
             };
             combo_tvp {
                 timeout-ms = <100>;
                 key-positions = <11 12 13>;
-                bindings = <&tog TVP1>;
+                bindings = <&tog TVP1>;         // toggle layer, switches the layer on and off
             };
     };
 
     macros {
-        gif: gif {
-            label = "giphy";
+        gif: gif {                      // the part befor the colon is the identifyer used to bind the defined behavior to a physical button
+            label = "giphy";            // this specific macro is defined by the first author of the document it's a button that types "@gif"
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -68,7 +68,7 @@
 label= "BASE"                              ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃     Q     ┃     W     ┃     F     ┃     P     ┃     G     ┃   ┃     J     ┃     L     ┃     U     ┃     Y     ┃     ;     ┃
+//             ┃     Q     ┃     W     ┃     F     ┃     P     ┃     G     ┃   ┃     J     ┃     L     ┃     U     ┃     Y     ┃ ; (SEMI)  ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
 //             ┃     A     ┃     R     ┃     S     ┃     T     ┃     D     ┃   ┃     H     ┃     N     ┃     E     ┃     I     ┃     O     ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
@@ -76,12 +76,18 @@ label= "BASE"                              ;
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 //                                     ┃    DEL    ┃    TAB    ┃    SPC    ┃   ┃   ENTER   ┃           ┃   BSPC    ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+// &kp - key press
+// &lt - layer tap =  tap the key, send KEY; hold the key, activate LAYER
+// &trans - "transparent", this button does nothing, falls through tho the lower leyer
+// &none - do nothing 
+// &mo [LAYER_NAME] - momentary layer aka activate the layer while holding this button
+// &tog [LAYER_NAME] - toggle layer
  bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
-                &kp Q       &kp W       &kp F       &kp P       &kp G           &kp J       &kp L       &kp U       &kp Y       &kp SEMI
-                &mt LGUI A  &mt LALT R  &mt LCTRL S &mt LSHFT T &kp D           &kp H       &mt RSHFT N &mt RCTRL E &mt RALT I  &mt RGUI O
-    &kp Q       &kp Z       &kp X       &kp C       &kp V       &kp B           &kp K       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp BSLH
+                &kp Q       &kp W       &kp E       &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P
+                &mt LGUI A  &mt LALT S  &mt LCTRL D &mt LSHFT F &kp G           &kp H       &mt RSHFT J &mt RCTRL K &mt RALT L  &mt RGUI SEMI
+    &none       &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp BSLH
                                         &kp DEL   &lt NAV TAB   &kp SPACE       &kp RET   &lt SYM ESC   &kp BSPC
                         >;
                 };

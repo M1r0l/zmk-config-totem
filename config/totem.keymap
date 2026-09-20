@@ -82,6 +82,7 @@ label= "BASE"                              ;
 // &none - do nothing 
 // &mo [LAYER_NAME] - momentary layer aka activate the layer while holding this button
 // &tog [LAYER_NAME] - toggle layer
+// just for the git hub workflow
  bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
